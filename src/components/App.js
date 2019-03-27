@@ -12,7 +12,7 @@ class App extends Component {
     let newAuction = <CreateNewAuction name="Sara" />;
 
     return <div className="App">
-    {newAuction}
+      {newAuction}
     </div>;
   }
 }
