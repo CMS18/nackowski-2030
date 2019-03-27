@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-class CreateNewAuction extends Component{
+export default class CreateNewAuction extends Component{
     render(){
         return(<div>
             <label>{this.props.name}</label>
@@ -12,7 +12,7 @@ class CreateNewAuction extends Component{
             <br/>
             <input type="text" class="datepicker"></input>
             <br/>
-            
+
         </div>)
     }
 }
