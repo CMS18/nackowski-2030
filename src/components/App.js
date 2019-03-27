@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AuctionList from './AuctionList';
+import AuctionListItem from './AuctionListItem';
+import Navigation from "./Navigation";
 
 class App extends Component {
   render() {
-    return (<div>
-    <AuctionList />
+    let auctionListItem = <AuctionListItem />
+    let navigation = <Navigation />;
+    let auctionList = <AuctionList />
 
-    </div>
-     
-    );
+    return <div className="App">
+    {auctionListItem}
+    {navigation}
+    {auctionList}
+    </div>;
+   
   }
 }
 
