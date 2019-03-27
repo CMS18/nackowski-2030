@@ -7,8 +7,8 @@ export default class AuctionList extends Component{
 
     render()
     {
-        let allItems = this.props.posts.map((AuctionListItem) =>{
-            return(<AuctionListItem item = {AuctionList} />)
+        let allItems = this.props.posts.map((auctionlistitem) =>{
+            return(<auctionlistitem item = {auctionlistitem} />)
         })
 
         return(<div>{allItems}</div>);
