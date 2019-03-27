@@ -1,17 +1,17 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
-export default class CreateNewAuction extends Component{
-    render(){
-        return(<div>
+export default class CreateNewAuction extends Component {
+    render() {
+        return (<div>
             <label>{this.props.name}</label>
             <label>Rubrik:</label>
-            <br/>
+            <br />
             <input type="text" />
-            <br/>
+            <br />
             <label>Slutdatum:</label>
-            <br/>
+            <br />
             <input type="text" class="datepicker"></input>
-            <br/>
+            <br />
 
         </div>)
     }
