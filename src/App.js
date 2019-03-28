@@ -1,17 +1,24 @@
 import React, { Component } from "react";
-import AuctionList from "./AuctionList";
-import AuctionListItem from "./AuctionListItem";
-import Navigation from "./Navigation";
-import CreateNewAuction from "./CreateNewAuction";
+
+// import AuctionList from "./components/AuctionList";
+import Navigation from "./components/Navigation";
+import CreateNewAuction from "./components/CreateNewAuction";
+
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
-    //let auctionListItem = <AuctionListItem />;
-    //let navigation = <Navigation />;
-    //let auctionList = <AuctionList />;
-    let newAuction = <CreateNewAuction name="Sara" />;
-
-    return <div className="App">{newAuction}</div>;
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Navigation />
+          <Switch>
+            {/* <Route Exact path="/" component={AuctionList} /> */}
+            <Route path="/new" component={CreateNewAuction} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 
