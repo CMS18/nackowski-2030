@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AuctionList from "./AuctionList";
 import AuctionListItem from "./AuctionListItem";
 import Navigation from "./Navigation";
-import CreateNewAuction from './CreateNewAuction';
+import CreateNewAuction from "./CreateNewAuction";
 
 class App extends Component {
   render() {
@@ -11,9 +11,7 @@ class App extends Component {
     //let auctionList = <AuctionList />;
     let newAuction = <CreateNewAuction name="Sara" />;
 
-    return <div className="App">
-      {newAuction}
-    </div>;
+    return <div className="App">{newAuction}</div>;
   }
 }
 
