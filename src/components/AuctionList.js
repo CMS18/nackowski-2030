@@ -26,7 +26,7 @@ export default class AuctionList extends Component{
 
     render()
         {
-        return <AuctionList posts = {this.state.posts} />
+            return <AuctionList posts = {this.state.posts} />
         }
 
 
