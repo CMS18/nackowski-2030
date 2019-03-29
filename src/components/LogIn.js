@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { loginUser } from "../actions/userActions";
 
 export class LogIn extends Component {
   state = {
@@ -14,27 +15,35 @@ export class LogIn extends Component {
   };
 
   handleSubmit = e => {
+    console.log(this.props);
     e.preventDefault();
-    this.props.submitForm();
+    this.props.submitForm(this.state.name);
   };
 
   render() {
+    console.log(this.props);
+
     return (
-      <div class="container">
+      <div className="container">
         <form onSubmit={this.handleSubmit}>
-          <div class="row">
-            <div class="input-field col s6">
+          <div className="row">
+            <div className="input-field col s6">
               <input
                 id="first_name"
                 type="text"
-                class="validate"
+                className="validate"
                 onChange={this.handleChange}
               />
-              <label for="first_name">Name</label>
+              <label htmlFor="first_name">Name</label>
             </div>
           </div>
           <div>
-            <input id="submit" type="submit" className="btn" value="Log In" />
+            <input
+              id="submit"
+              type="submit"
+              className="btn red"
+              value="Log In"
+            />
           </div>
         </form>
       </div>
@@ -42,7 +51,14 @@ export class LogIn extends Component {
   }
 }
 
-const mapDispatchToProps = {};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    submitForm: name => {
+      dispatch(loginUser(name));
+    }
+  };
+};
 
 export default connect(
   null,
