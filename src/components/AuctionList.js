@@ -1,61 +1,60 @@
 import React, {Component} from 'react';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import CreateNewAuction from './CreateNewAuction';
+import axios from 'axios';
 
 //testcode start ---------------------------
 
 export default class AuctionList extends Component{
 
-    constructor(){
-        super();
-
-        this.state = {
-            'items': []
-        }
+    state = {
+        posts: [ ]
     }
-
     componentDidMount(){
-        this.getItems();
-    }
-
-    getItems(){
-        fetch('http://nackowskis.azurewebsites.net/api/Auktion/2030/')
-        .then(results => results.json())
-        .then(json => json.results)
-        .then(results => this.setState({'items': results}));
-    }
-
-    addAuction = (auction) => {
-        auction.id = Math.random();
-        let auctions = [...this.state.auctions]
-        this.setState({
-            auctions
+        axios.get('http://nackowskis.azurewebsites.net/api/Auktion/2030/')
+        .then(res => {
+            console.log(res)
+            this.setState({
+                posts : res.data.slice(0,3)
+            })
         })
-
     }
 
     render(){
-        return(
-            <ul>
-                {this.state.items.map(function(item, index){
-                    return <div key={index} className="">
-                        <h1>{item.title}</h1>
-                        <p>{item.description}</p>
-                        <p>{item.expiredate}</p>
-                        <p>{item.bid}</p>
-                        {/* <CreateNewAuction createNewAuction{this.createNewAuction} /> */}
-
+        const {posts} = this.state;
+        const postList = posts.length ? (
+            posts.map(post => {
+                return(
+                    <div className="post card" key={post.id}>
+                    <div className="card-content">
+                    <span className="card-title"></span>
+                    <h1>{post.title}</h1>
+                    <h4>{post.info}</h4>
+                    <p>{post.enddate}</p>
+                    <p>{post.startingprice}</p>
+                    <p>{post.info}</p>
                     </div>
-                    }
-                 )}
+                    </div>
+                    
+                )
+            })
+        ) : (
+            <div className="">No auctions avalible</div>
+        )
 
-            </ul>
-        );
+        return(
+            <div className="">
+            <h3>Home</h3>
+            {postList}
+            </div>
+
+        )
     }
-    // render()
-    //     {
-    //         return <AuctionList posts = {this.state.posts} />
-    //     }
+
+//  render()
+//      {
+//          return <AuctionList posts = {this.state.posts} />
+//      }
 
 
 }
