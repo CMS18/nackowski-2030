@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 const SignedInLinks = () => {
@@ -8,7 +8,7 @@ const SignedInLinks = () => {
         <NavLink to="/new">Create New Auction</NavLink>
       </li>
       <li>
-        <NavLink to="/">List Auctions</NavLink>
+        <NavLink to="/list">List Auctions</NavLink>
       </li>
       <li>
         <NavLink to="/">Log Out</NavLink>

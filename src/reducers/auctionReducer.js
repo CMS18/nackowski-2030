@@ -1,6 +1,6 @@
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case "typeName":
+    case "strut":
       return { ...state, ...payload };
 
     default:
@@ -18,7 +18,7 @@ const initialState = {
       SlutDatum: "2018-09-12T10:42:00",
       Gruppkod: 1040,
       Utropspris: 4330,
-      SkapadAv: "samuelbering@hotmail.com"
+      SkapadAv: "Albin"
     },
     {
       AuktionID: 2463,
@@ -28,7 +28,7 @@ const initialState = {
       SlutDatum: "2018-09-12T10:43:00",
       Gruppkod: 1040,
       Utropspris: 6400,
-      SkapadAv: "samuelbering@hotmail.com"
+      SkapadAv: "Hannibal"
     },
     {
       AuktionID: 2467,
