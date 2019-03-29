@@ -6,25 +6,25 @@ import { SignedOutLinks } from "./SignedOutLinks";
 
 export class Navigation extends Component {
   render() {
+    console.log(this.props.userName);
+    let links =
+      this.props.userName === null ? <SignedOutLinks /> : <SignedInLinks />;
+
     return (
       <nav className="nav-wrapper red">
         <div className="container">
           <Link to="/" className="brand-logo left">
             Nackowski
           </Link>
-          <SignedInLinks />
-          <SignedOutLinks />
+          {links}
         </div>
       </nav>
     );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  userName: state.user.name
+});
 
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps)(Navigation);

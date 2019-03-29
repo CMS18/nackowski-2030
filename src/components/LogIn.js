@@ -17,12 +17,11 @@ export class LogIn extends Component {
   handleSubmit = e => {
     console.log(this.props);
     e.preventDefault();
-    this.props.submitForm(this.state.name);
+    this.props.loginUser(this.state.name);
+    this.props.history.push("/");
   };
 
   render() {
-    console.log(this.props);
-
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -51,10 +50,9 @@ export class LogIn extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
-    submitForm: name => {
+    loginUser: name => {
       dispatch(loginUser(name));
     }
   };

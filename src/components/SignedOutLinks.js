@@ -7,6 +7,9 @@ export class SignedOutLinks extends Component {
     return (
       <ul className="right">
         <li>
+          <NavLink to="/list">List Auctions</NavLink>
+        </li>
+        <li>
           <NavLink to="/login">Log In</NavLink>
         </li>
       </ul>
