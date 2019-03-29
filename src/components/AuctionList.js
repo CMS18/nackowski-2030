@@ -52,6 +52,10 @@ export default class AuctionList extends Component{
             </ul>
         );
     }
+    // render()
+    //     {
+    //         return <AuctionList posts = {this.state.posts} />
+    //     }
 
 
 }
