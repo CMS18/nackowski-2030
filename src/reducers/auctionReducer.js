@@ -1,6 +1,6 @@
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case "strut":
+    case "LOAD_AUCTIONS":
       return { ...state, ...payload };
 
     default:
