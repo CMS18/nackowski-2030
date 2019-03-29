@@ -6,7 +6,7 @@ export default class CreateNewAuction extends Component {
         name: null,
         title: null,
         endDate: null,
-        estimate: null,
+        startingPrice: null,
         info: null
     }
 
@@ -15,7 +15,7 @@ export default class CreateNewAuction extends Component {
             [e.target.id]: e.target.value
         });
     }
-    
+
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -24,15 +24,15 @@ export default class CreateNewAuction extends Component {
     render() {
         return (<form onSubmit={this.handleSubmit}>
             <label htmlFor="name">{this.props.name}</label>
-            <label htmlFor="title">Rubrik</label>
+            <label htmlFor="title">Title</label>
             <input type="text" id="title" onChange={this.handleChange} />
-            <label htmlFor="endDate">Slutdatum</label>
+            <label htmlFor="endDate">End date</label>
             <input type="text" class="datepicker" id="endDate" onChange={this.handleChange}></input>
-            <label htmlFor="estimate">Utropspris</label>
-            <input type="text" id="estimate" onChange={this.handleChange} />
-            <label htmlFor="info">Information om produkten</label>
+            <label htmlFor="startingPrice">Starting price</label>
+            <input type="text" id="startingPrice" onChange={this.handleChange} />
+            <label htmlFor="info">Information about the product</label>
             <textarea cols="70" rows="20" id="info" onChange={this.handleChange}></textarea>
-            <button id="createNewCMD">Spara auktion</button>
+            <button id="createNewCMD">Save auction</button>
             </form>)
     }
 }
