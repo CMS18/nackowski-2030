@@ -8,6 +8,7 @@ export default class CreateNewAuction extends Component {
         endDate: null,
         startingPrice: null,
         info: null
+        //behövs nån typ av id?
     }
 
     handleChange = (e) => {
@@ -18,8 +19,22 @@ export default class CreateNewAuction extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
+        /* --- behöver AddAuction i AuctionList först ---
+        this.props.addAuction(this.state) */
     }
+
+    /* ---------------- I AuctionList (?) ----------
+    addAuction = (auction) => {
+        let auctions = [...this.state.auctions, auction] (spread så det blir en kopia av listan som finns,
+                                                så man inte ändrar på state direkt.)
+        this.setState({
+            posts: auctions
+        })
+    }
+    
+    ----------- I AuctionLists render-return -----------
+    <AddAuction addAuction={this.addAuction} />
+    */
 
     render() {
         return (<form onSubmit={this.handleSubmit}>
