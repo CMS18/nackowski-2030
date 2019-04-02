@@ -1,13 +1,20 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import AuctionList from "./components/AuctionList";
-import Navigation from "./components/Navigation";
-import CreateNewAuction from "./components/CreateNewAuction";
+import AuctionList from './components/AuctionList';
+import Navigation from './components/Navigation';
+import CreateNewAuction from './components/CreateNewAuction';
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import LogIn from "./components/LogIn";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import LogIn from './components/LogIn';
+
+import { connect } from 'react-redux';
+import { loadAuctions } from './actions/auctionActions';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.loadDatabase();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -25,4 +32,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    loadDatabase: () => dispatch(loadAuctions())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
