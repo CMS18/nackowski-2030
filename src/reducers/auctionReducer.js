@@ -3,6 +3,9 @@ export default (state = initialState, { type, payload }) => {
     case "LOAD_AUCTIONS":
       return { ...state, ...payload };
 
+    case "ADD_AUCTION":
+      return { ...state, ...payload };
+
     default:
       return state;
   }
