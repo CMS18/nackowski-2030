@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addAuction } from "../actions/auctionActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addAuction } from '../actions/auctionActions';
 
 class CreateNewAuction extends Component {
   state = {
-    name: null,
-    title: null,
-    endDate: null,
-    startingPrice: null,
-    info: null
+    Titel: null,
+    SlutDatum: null,
+    Utropspris: null,
+    Beskrivning: null
   };
 
   handleChange = e => {
@@ -24,23 +23,55 @@ class CreateNewAuction extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="name">{this.props.name}</label>
-        <label htmlFor="title">Title</label>
-        <input type="text" id="title" onChange={this.handleChange} />
-        <label htmlFor="endDate">End date</label>
-        <input
-          type="text"
-          class="datepicker"
-          id="endDate"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="startingPrice">Starting price</label>
-        <input type="text" id="startingPrice" onChange={this.handleChange} />
-        <label htmlFor="info">Information about the product</label>
-        <textarea cols="70" rows="20" id="info" onChange={this.handleChange} />
-        <button id="createNewCMD">Save auction</button>
-      </form>
+      <div className="container">
+        <div className="row valign-wrapper">
+          <div className="col s6 offset-s3 valign">
+            <div className="card white darken-1">
+              <div className="card-content black-text">
+                <span className="card-title">Create new auction</span>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="input-field">
+                    <input
+                      type="text"
+                      id="Titel"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="Titel">Title</label>
+                  </div>
+                  <div className="input-field">
+                    <input
+                      type="date"
+                      className="datepicker"
+                      id="SlutDatum"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="SlutDatum">End date</label>
+                  </div>
+                  <div className="input-field">
+                    <input
+                      type="text"
+                      id="Utropspris"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="Utropspris">Starting price</label>
+                  </div>
+                  <div className="input-field">
+                    <textarea
+                      id="Beskrivning"
+                      class="materialize-textarea"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="Beskrivning">
+                      Information about the product
+                    </label>
+                  </div>
+                  <button id="createNewCMD">Save auction</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
