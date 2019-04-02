@@ -4,9 +4,22 @@ import moment from 'moment';
 export const loadAuctions = () => {
   return (dispatch, getState) => {
     axios
-      .get('http://nackowskis.azurewebsites.net/api/Auktion/1040/')
+      .get('http://nackowskis.azurewebsites.net/api/Auktion/2030/')
       .then(res => {
         dispatch({ type: 'LOAD_AUCTIONS', payload: { auctions: res.data } });
+      });
+  };
+};
+
+export const loadSingleAuction = id => {
+  return (dispatch, getState) => {
+    axios
+      .get(`http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`)
+      .then(res => {
+        dispatch({
+          type: 'LOAD_SINGLEAUCTION',
+          payload: { auction: res.data }
+        });
       });
   };
 };
