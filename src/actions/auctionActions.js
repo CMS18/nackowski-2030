@@ -10,3 +10,10 @@ export const loadAuctions = () => {
       });
   };
 };
+
+export const addAuction = (auction) => {
+  return {
+    type: "ADD_AUCTION",
+    auction
+  }
+}
