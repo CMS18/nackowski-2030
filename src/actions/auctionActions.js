@@ -12,25 +12,15 @@ export const loadAuctions = () => {
 };
 
 export const addAuction = auction => {
-  auction = {
-    Titel: 'strut',
-    Beskrivning: 'kaos',
-    StartDatum: '2018-08-12T10:42:00',
-    SlutDatum: '2018-09-12T10:42:00',
-    Gruppkod: 2030,
-    Utropspris: 100,
-    SkapadAv: 'Albin'
-  };
-
   return (dispatch, getState) => {
     let postObject = {
       ...auction,
       SkapadAv: getState().user.name,
       StartDatum: moment().format(),
-      SlutDatum: moment()
-        .parse(auction.SlutDatum)
-        .format()
+      SlutDatum: moment(auction.SlutDatum).format(),
+      Gruppkod: 2030
     };
+    console.log(postObject);
 
     axios({
       method: 'POST',
