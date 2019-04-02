@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 
 export const loadAuctions = () => {
   return (dispatch, getState) => {
@@ -11,9 +12,9 @@ export const loadAuctions = () => {
 };
 
 export const addAuction = auction => {
-  let fakeAuction = {
-    Titel: 'Strut',
-    Beskrivning: 'Glassig strut',
+  auction = {
+    Titel: 'strut',
+    Beskrivning: 'kaos',
     StartDatum: '2018-08-12T10:42:00',
     SlutDatum: '2018-09-12T10:42:00',
     Gruppkod: 2030,
@@ -22,6 +23,15 @@ export const addAuction = auction => {
   };
 
   return (dispatch, getState) => {
+    let postObject = {
+      ...auction,
+      SkapadAv: getState().user.name,
+      StartDatum: moment().format(),
+      SlutDatum: moment()
+        .parse(auction.SlutDatum)
+        .format()
+    };
+
     axios({
       method: 'POST',
       url: 'http://nackowskis.azurewebsites.net/api/Auktion/2030/',
@@ -29,9 +39,47 @@ export const addAuction = auction => {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(fakeAuction)
+      data: JSON.stringify(postObject)
     }).then(res => {
-      dispatch({ type: 'ADD_AUCTION', payload: { auction: auction } });
+      console.log(res);
+
+      dispatch({
+        type: 'ADD_AUCTION',
+        payload: { auction: postObject }
+      });
+    });
+  };
+};
+
+export const deleteAuction = id => {
+  return (dispatch, getState) => {
+    axios({
+      method: 'DELETE',
+      url: `http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
+    });
+  };
+};
+
+export const editAuction = auction => {
+  return (dispatch, getState) => {
+    axios({
+      method: 'PUT',
+      url: `http://nackowskis.azurewebsites.net/api/Auktion/2030/${
+        auction.AuktionID
+      }`,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(auction)
+    }).then(res => {
+      dispatch({ type: 'EDIT_AUCTION', payload: { auction: auction } });
     });
   };
 };
