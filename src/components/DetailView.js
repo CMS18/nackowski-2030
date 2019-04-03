@@ -34,7 +34,7 @@ export class DetailView extends Component {
               {adminpanel}
             </div>
             <div className="col s6 card">
-              <BidList id={auction.id} />
+              <BidList id={auction.AuktionID} utropspris={auction.Utropspris} />
             </div>
           </div>
         </div>
@@ -46,7 +46,9 @@ export class DetailView extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  auction: state.auction.auctions.find(auc => auc.AuktionID == ownProps.id),
+  auction: state.auction.auctions.find(
+    auc => auc.AuktionID === parseInt(ownProps.id)
+  ),
   // user: state.user.name
   user: 'Albin'
 });

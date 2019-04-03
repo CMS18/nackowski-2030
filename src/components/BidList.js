@@ -4,7 +4,9 @@ import { createBid, loadBids } from '../actions/bidActions';
 
 export class BidList extends Component {
   componentDidMount() {
-    loadBids(this.props.auktionID);
+    console.log(this.props);
+
+    this.props.loadBids(this.props.id);
   }
 
   handleChange = event => {
@@ -15,7 +17,10 @@ export class BidList extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.submitBid(this.state.bidAmount);
+    this.props.submitBid({
+      Summa: this.state.bidAmount,
+      AuktionID: this.props.id
+    });
     // this.setState({
     //   bidAmount: ''
     // });
@@ -23,6 +28,7 @@ export class BidList extends Component {
   };
 
   render() {
+    console.log(this.props.id);
     let listItems = this.props.bids
       .map(e => (
         <li key={e.BudID}>
@@ -31,6 +37,13 @@ export class BidList extends Component {
         </li>
       ))
       .reverse();
+
+    listItems.push(
+      <li key={'utgang'}>
+        <h5>Utgångspris</h5>
+        <p>{this.props.utropspris}</p>
+      </li>
+    );
 
     let bids = this.props.bids;
 
@@ -58,21 +71,23 @@ export class BidList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  // bids: state.bids.bids
-  bids: [
-    { BudID: 600, Summa: 25100, AuktionID: 1, Budgivare: 'Hannibal' },
-    { BudID: 601, Summa: 28900, AuktionID: 1, Budgivare: 'Sara' },
-    { BudID: 602, Summa: 999999, AuktionID: 1, Budgivare: 'Albin' }
-  ]
+const mapStateToProps = (state, ownProps) => ({
+  bids: state.bids.bids
+  // utgangspris: state.auctions.find(a => a.AuktionID === parseInt(ownProps.id))
+  //   .utgangspris
+  // bids: [
+  //   { BudID: 600, Summa: 25100, AuktionID: 1, Budgivare: 'Hannibal' },
+  //   { BudID: 601, Summa: 28900, AuktionID: 1, Budgivare: 'Sara' },
+  //   { BudID: 602, Summa: 999999, AuktionID: 1, Budgivare: 'Albin' }
+  // ]
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    // submitBid: () => dispatch(createBid())
-    // loadBids: auktionID => dispatch(loadBids(auktionID)),
-    loadBids: auktionID => {},
-    submitBid: () => {}
+    submitBid: bid => dispatch(createBid(bid)),
+    loadBids: id => dispatch(loadBids(id))
+    // loadBids: auktionID => {},
+    // submitBid: () => {}
   };
 };
 

@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSingleAuction, editAuction } from '../actions/auctionActions';
+import moment from 'moment';
 
 class EditAuction extends Component {
   componentDidMount() {
     this.props.loadAuction(this.props.id);
+    this.setState(this.props.auction);
   }
 
-  state = {
-    Titel: null,
-    SlutDatum: null,
-    Utropspris: null,
-    Beskrivning: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Titel: 'loading',
+      SlutDatum: '',
+      Utropspris: '',
+      Beskrivning: '',
+      SkapadAv: '',
+      AuktionID: ''
+    };
+  }
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+
+    if (oldProps.auction === undefined && newProps.auction !== undefined) {
+      let newTime = moment(newProps.auction.SlutDatum).format('YYYY-MM-DD');
+      let newState = { ...newProps.auction, SlutDatum: newTime };
+      this.setState(newState);
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -21,7 +39,9 @@ class EditAuction extends Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     this.props.editAuction(this.state);
+    this.props.history.push('/auction/' + this.props.id);
   };
 
   render() {
@@ -40,32 +60,41 @@ class EditAuction extends Component {
                       id="Titel"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Titel">Title</label>
+                    <label className="active" htmlFor="Titel">
+                      Title
+                    </label>
                   </div>
                   <div className="input-field">
                     <input
+                      value={this.state.SlutDatum}
                       type="date"
                       className="datepicker"
                       id="SlutDatum"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="SlutDatum">End date</label>
+                    <label className="active" htmlFor="SlutDatum">
+                      End date
+                    </label>
                   </div>
                   <div className="input-field">
                     <input
+                      value={this.state.Utropspris}
                       type="text"
                       id="Utropspris"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Utropspris">Starting price</label>
+                    <label htmlFor="Utropspris" className="active">
+                      Starting price
+                    </label>
                   </div>
                   <div className="input-field">
                     <textarea
+                      value={this.state.Beskrivning}
                       id="Beskrivning"
-                      class="materialize-textarea"
+                      className="materialize-textarea"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Beskrivning">
+                    <label className="active" htmlFor="Beskrivning">
                       Information about the product
                     </label>
                   </div>
@@ -79,7 +108,13 @@ class EditAuction extends Component {
     );
   }
 }
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    auction: state.auction.auctions.find(
+      a => a.AuktionID === parseInt(ownProps.id)
+    )
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

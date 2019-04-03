@@ -25,8 +25,8 @@ export class AdminPanel extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+// const mapStateToProps = state => ({});
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
 export default AdminPanel;
