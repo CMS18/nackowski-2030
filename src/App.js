@@ -26,6 +26,7 @@ class App extends Component {
           <Switch>
             {/* <Route Exact path="/" component={AuctionList} /> */}
             <Route path="/list" component={AuctionList} />
+            <Route path="/test" component={TestComponent} />
             <Route path="/new" component={CreateNewAuction} />
             <Route path="/login" component={LogIn} />
             <Route
