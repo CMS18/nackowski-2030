@@ -11,8 +11,6 @@ import DetailView from './components/DetailView';
 import { connect } from 'react-redux';
 import { loadAuctions } from './actions/auctionActions';
 
-import TestComponent from './components/TestComponent';
-
 class App extends Component {
   componentDidMount() {
     this.props.loadDatabase();
@@ -26,7 +24,6 @@ class App extends Component {
           <Switch>
             {/* <Route Exact path="/" component={AuctionList} /> */}
             <Route path="/list" component={AuctionList} />
-            <Route path="/test" component={TestComponent} />
             <Route path="/new" component={CreateNewAuction} />
             <Route path="/login" component={LogIn} />
             <Route
