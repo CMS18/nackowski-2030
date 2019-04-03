@@ -10,6 +10,8 @@ import LogIn from './components/LogIn';
 import { connect } from 'react-redux';
 import { loadAuctions } from './actions/auctionActions';
 
+import TestComponent from './components/TestComponent';
+
 class App extends Component {
   componentDidMount() {
     this.props.loadDatabase();
@@ -25,6 +27,7 @@ class App extends Component {
             <Route path="/list" component={AuctionList} />
             <Route path="/new" component={CreateNewAuction} />
             <Route path="/login" component={LogIn} />
+            <Route path="/test" component={TestComponent} />
           </Switch>
         </div>
       </BrowserRouter>
