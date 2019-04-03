@@ -7,6 +7,7 @@ import CreateNewAuction from './components/CreateNewAuction';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LogIn from './components/LogIn';
 import DetailView from './components/DetailView';
+import EditAuction from './components/EditAuction';
 
 import { connect } from 'react-redux';
 import { loadAuctions } from './actions/auctionActions';
@@ -33,6 +34,12 @@ class App extends Component {
               path="/auction/:id"
               render={props => (
                 <DetailView {...props} id={props.match.params.id} />
+              )}
+            />
+            <Route
+              path="/edit/:id"
+              render={props => (
+                <EditAuction {...props} id={props.match.params.id} />
               )}
             />
           </Switch>
