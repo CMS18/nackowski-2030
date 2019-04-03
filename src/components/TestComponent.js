@@ -1,13 +1,14 @@
 /* ---- test av bidActions ---- */
 
 import React, { Component } from 'react';
-import { loadBids } from '../actions/bidActions';
+import { loadBids, createBid } from '../actions/bidActions';
 import { connect } from 'react-redux';
 
 class TestComponent extends Component {
   state = {
     Summa: null,
-    Budgivare: null
+    Budgivare: null,
+    AuktionID: null
   };
 
   handleSubmit = e => {
@@ -16,7 +17,7 @@ class TestComponent extends Component {
   };
 
   render() {
-    let fakeBid = { Summa: 200, Budgivare: 'Sara' };
+    let fakeBid = { Summa: 200, Budgivare: 'Sara', AuktionID: 3454 };
     return (
       <div>
         <button onClick={() => this.props.createBid(fakeBid)}>Add bid</button>
@@ -28,7 +29,7 @@ class TestComponent extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    //createBid: bid => dispatch(createBid(bid)),
+    createBid: bid => dispatch(createBid(bid)),
     loadBids: () => dispatch(loadBids())
   };
 };

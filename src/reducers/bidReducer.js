@@ -9,6 +9,10 @@ const bidReducer = (state = initialState, { type, payload }) => {
       console.log(payload);
       return { ...state, bids: payload.bids };
 
+    case 'CREATE_BID':
+      let { bid } = payload;
+      return { ...state, bids: [...state.bids, bid] };
+
     default:
       return state;
   }
@@ -16,6 +20,6 @@ const bidReducer = (state = initialState, { type, payload }) => {
 
 export default bidReducer;
 
-//Load
+//Load CHECK
 //Add
 //Delete
