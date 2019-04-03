@@ -1,9 +1,12 @@
-export default (state = [], { type, payload }) => {
+const initialState = { auctions: [] };
+
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case 'LOAD_AUCTIONS':
       let { auctions } = payload;
       return { ...state, auctions };
-
+    case 'LOAD_SINGLEAUCTION':
+      return { ...state, auctions: [...state.auctions, payload.auction] };
     case 'ADD_AUCTION':
       let { auction } = payload;
       return { ...state, auctions: [...state.auctions, auction] };
