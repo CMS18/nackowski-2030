@@ -2,9 +2,9 @@ const initialState = {
   bids: []
 };
 
-const bidReducer = (state = initialState, payload) => {
+const bidReducer = (state = initialState, { type, payload }) => {
   console.log(payload);
-  switch (payload.type) {
+  switch (type) {
     case 'LOAD_BIDS':
       console.log(payload);
       return { ...state, bids: payload.bids };
