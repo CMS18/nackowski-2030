@@ -4,8 +4,6 @@ import { createBid, loadBids } from '../actions/bidActions';
 
 export class BidList extends Component {
   componentDidMount() {
-    console.log(this.props);
-
     this.props.loadBids(this.props.auction.AuktionID);
   }
 

@@ -7,8 +7,6 @@ export class AdminPanel extends Component {
   //   };
 
   render() {
-    console.log(this.props);
-
     return (
       <div>
         {/* <button className="btn" onClick={this.handleEdit}>
