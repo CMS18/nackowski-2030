@@ -1,5 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
+import { deleteBid } from './bidActions';
 
 export const loadAuctions = () => {
   return (dispatch, getState) => {
@@ -64,17 +65,15 @@ export const deleteAuction = id => {
         'Content-Type': 'application/json'
       }
     }).then(res => {
-      axios({
-        method: 'DELETE',
-        url: `http://nackowskis.azurewebsites.net/api/bud/2030/${id}`,
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        }
-      }).then(res => {
-        dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
-        dispatch({ type: 'DELETE_ALLBIDSONAUCTION', payload: { id: id } });
-      });
+      dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
+      axios
+        .get(`http://nackowskis.azurewebsites.net/api/bud/2030/${id}`)
+        .then(res => {
+          console.log(res);
+          for (let b of res.data) {
+            dispatch(deleteBid(b.BudID));
+          }
+        });
     });
   };
 };

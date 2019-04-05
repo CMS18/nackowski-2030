@@ -12,20 +12,19 @@ class DeleteAuction extends Component {
   handleClick = e => {
     e.preventDefault();
     if (e.target.id == 'dontDeleteCMD') {
-      this.props.history.push('/login');
+      this.props.history.push('/list');
     } else {
       this.props.deleteAuction(this.props.auction.AuktionID);
-      this.props.history.push('/');
+      this.props.history.push('/list');
     } //ta bort auktionen och alla bud på den auktionen + ett meddelande och en tillbakaknapp
   };
 
   render() {
     let auction = this.props.auction;
-    let user = 'Sara'; //this.props.user;
+    let user = 'Albin'; //this.props.user;
 
     if (auction) {
       if (auction.SkapadAv !== user) {
-        console.log('inne i if-satsen');
         return <Redirect to="/login" />;
       } else {
         return (
