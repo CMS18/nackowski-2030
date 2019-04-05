@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteAuction, loadSingleAuction } from '../actions/auctionActions';
+import { deleteAuction, loadAuctions } from '../actions/auctionActions';
 import moment from 'moment';
 import { Redirect } from 'react-router-dom';
 
 class DeleteAuction extends Component {
   componentDidMount() {
-    this.props.loadAuction(this.props.id);
+    this.props.loadAuctions();
   }
 
   handleClick = e => {
@@ -79,7 +79,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadAuction: id => dispatch(loadSingleAuction(id)),
+    loadAuctions: id => dispatch(loadAuctions()),
     deleteAuction: id => dispatch(deleteAuction(id))
   };
 };
