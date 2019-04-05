@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { loginUser } from "../actions/userActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/userActions';
 
 export class LogIn extends Component {
   state = {
@@ -15,10 +15,9 @@ export class LogIn extends Component {
   };
 
   handleSubmit = e => {
-    console.log(this.props);
     e.preventDefault();
     this.props.loginUser(this.state.name);
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {

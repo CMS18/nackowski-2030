@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import SignedInLinks from "./SignedInLinks";
-import { SignedOutLinks } from "./SignedOutLinks";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import SignedInLinks from './SignedInLinks';
+import { SignedOutLinks } from './SignedOutLinks';
 
 export class Navigation extends Component {
   render() {
-    console.log(this.props.userName);
     let links =
       this.props.userName === null ? <SignedOutLinks /> : <SignedInLinks />;
 

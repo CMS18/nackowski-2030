@@ -18,6 +18,11 @@ code {
   width: 33.33%;
 }
 
+.bidlistitem {
+  display: flex;
+  align-items: flex-end;
+}
+
 #deleteAucText {
   margin: 0px;
 }
