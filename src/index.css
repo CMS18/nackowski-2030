@@ -22,3 +22,16 @@ code {
   display: flex;
   align-items: flex-end;
 }
+
+#deleteAucText {
+  margin: 0px;
+}
+
+#deleteCMD,
+#dontDeleteCMD {
+  margin-top: 10px;
+}
+
+#deleteQuestion {
+  margin-bottom: 10px;
+}

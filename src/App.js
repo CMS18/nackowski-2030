@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import AuctionList from './components/AuctionList';
 import Navigation from './components/Navigation';
 import CreateNewAuction from './components/CreateNewAuction';
+import DeleteAuction from './components/DeleteAuction';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LogIn from './components/LogIn';
@@ -26,6 +27,12 @@ class App extends Component {
             {/* <Route Exact path="/" component={AuctionList} /> */}
             <Route path="/list" component={AuctionList} />
             <Route path="/new" component={CreateNewAuction} />
+            <Route
+              path="/delete/:id"
+              render={props => (
+                <DeleteAuction {...props} id={props.match.params.id} />
+              )}
+            />
             <Route path="/login" component={LogIn} />
             <Route
               path="/auction/:id"
