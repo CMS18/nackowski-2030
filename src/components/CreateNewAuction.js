@@ -5,7 +5,7 @@ import { addAuction } from '../actions/auctionActions';
 class CreateNewAuction extends Component {
   state = {
     Titel: null,
-    SlutDatum: null,
+    SlutDatum: new Date(),
     Utropspris: null,
     Beskrivning: null
   };
@@ -43,6 +43,7 @@ class CreateNewAuction extends Component {
                       type="date"
                       className="datepicker"
                       id="SlutDatum"
+                      value={this.state.SlutDatum.toLocaleDateString()}
                       onChange={this.handleChange}
                     />
                     <label htmlFor="SlutDatum">End date</label>
