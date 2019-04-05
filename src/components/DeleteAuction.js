@@ -16,12 +16,12 @@ class DeleteAuction extends Component {
     } else {
       this.props.deleteAuction(this.props.auction.AuktionID);
       this.props.history.push('/list');
-    } //ta bort auktionen och alla bud på den auktionen + ett meddelande och en tillbakaknapp
+    }
   };
 
   render() {
     let auction = this.props.auction;
-    let user = 'Albin'; //this.props.user;
+    let user = this.props.user;
 
     if (auction) {
       if (auction.SkapadAv !== user) {
