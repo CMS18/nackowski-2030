@@ -26,7 +26,8 @@ export const createBid = bid => {
       },
       data: JSON.stringify(bidObject)
     }).then(res => {
-      dispatch({ type: 'CREATE_BID', payload: { bid: bidObject } });
+      // dispatch({ type: 'CREATE_BID', payload: { bid: bidObject } });
+      dispatch(loadBids());
     });
   };
 };

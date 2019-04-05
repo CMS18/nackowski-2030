@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "../index.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import '../index.css';
 // import CreateNewAuction from './CreateNewAuction';
-import axios from "axios";
-import { Stats } from "fs";
+import axios from 'axios';
+import { Stats } from 'fs';
 
 //testcode start ---------------------------
 
@@ -47,6 +47,7 @@ export class AuctionList extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   auctions: state.auction.auctions
 });

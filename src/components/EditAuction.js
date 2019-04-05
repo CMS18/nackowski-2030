@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleAuction, editAuction } from '../actions/auctionActions';
+import { loadAuctions, editAuction } from '../actions/auctionActions';
 import moment from 'moment';
 
 class EditAuction extends Component {
   componentDidMount() {
-    this.props.loadAuction(this.props.id);
+    this.props.loadAuctions();
     this.setState(this.props.auction);
   }
 
@@ -118,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadAuction: id => dispatch(loadSingleAuction(id)),
+    loadAuctions: id => dispatch(loadAuctions()),
     editAuction: auction => dispatch(editAuction(auction))
   };
 };

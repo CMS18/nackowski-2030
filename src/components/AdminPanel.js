@@ -14,10 +14,10 @@ export class AdminPanel extends Component {
         {/* <button className="btn" onClick={this.handleEdit}>
           Edit Auction
         </button> */}
-        <Link className="btn" to={`/edit/${this.props.auktionID}`}>
+        <Link className="btn red" to={`/edit/${this.props.auktionID}`}>
           Edit Auction
         </Link>
-        <Link className="btn" to={`/delete/${this.props.auktionID}`}>
+        <Link className="btn red" to={`/delete/${this.props.auktionID}`}>
           Delete Auction
         </Link>
       </div>

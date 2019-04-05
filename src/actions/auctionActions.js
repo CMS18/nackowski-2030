@@ -11,18 +11,18 @@ export const loadAuctions = () => {
   };
 };
 
-export const loadSingleAuction = id => {
-  return (dispatch, getState) => {
-    axios
-      .get(`http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`)
-      .then(res => {
-        dispatch({
-          type: 'LOAD_SINGLEAUCTION',
-          payload: { auction: res.data }
-        });
-      });
-  };
-};
+// export const loadSingleAuction = id => {
+//   return (dispatch, getState) => {
+//     axios
+//       .get(`http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`)
+//       .then(res => {
+//         dispatch({
+//           type: 'LOAD_SINGLEAUCTION',
+//           payload: { auction: res.data }
+//         });
+//       });
+//   };
+// };
 
 export const addAuction = auction => {
   return (dispatch, getState) => {
@@ -45,11 +45,11 @@ export const addAuction = auction => {
       data: JSON.stringify(postObject)
     }).then(res => {
       console.log(res);
-
-      dispatch({
-        type: 'ADD_AUCTION',
-        payload: { auction: postObject }
-      });
+      dispatch(loadAuctions());
+      // dispatch({
+      //   type: 'ADD_AUCTION',
+      //   payload: { auction: postObject }
+      // });
     });
   };
 };

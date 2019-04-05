@@ -6,42 +6,27 @@ export class BidList extends Component {
   componentDidMount() {
     console.log(this.props);
 
-    this.props.loadBids(this.props.id);
+    this.props.loadBids(this.props.auction.AuktionID);
   }
 
-  handleChange = event => {
-    this.setState({
-      bidAmount: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.submitBid({
-      Summa: this.state.bidAmount,
-      AuktionID: this.props.id
-    });
-    // this.setState({
-    //   bidAmount: ''
-    // });
-    // event.target.value = 0;
+  state = {
+    bidAmount: 0
   };
 
   render() {
-    console.log(this.props.id);
     let listItems = this.props.bids
       .map(e => (
-        <li key={e.BudID}>
+        <li className="bidlistitem" key={e.BudID}>
           <h5>{e.Budgivare}</h5>
-          <p>{e.Summa}</p>{' '}
+          <p>{e.Summa} kr</p>{' '}
         </li>
       ))
       .reverse();
 
     listItems.push(
-      <li key={'utgang'}>
-        <h5>Utgångspris</h5>
-        <p>{this.props.utropspris}</p>
+      <li className="bidlistitem" key={'utgang'}>
+        <h5>Utropspris</h5>
+        <p>{this.props.auction.Utropspris} kr</p>
       </li>
     );
 
@@ -50,18 +35,6 @@ export class BidList extends Component {
     if (bids) {
       return (
         <div>
-          <h4>Bids</h4>
-          <form onSubmit={this.handleSubmit}>
-            <div className="input-field">
-              <input
-                id="newbid"
-                type="text"
-                className="validate"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="newbid">New Bid</label>
-            </div>
-          </form>
           <ul>{listItems}</ul>
         </div>
       );
@@ -72,7 +45,8 @@ export class BidList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  bids: state.bids.bids
+  bids: state.bids.bids,
+  user: state.user.name
   // utgangspris: state.auctions.find(a => a.AuktionID === parseInt(ownProps.id))
   //   .utgangspris
   // bids: [

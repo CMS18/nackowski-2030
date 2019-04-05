@@ -17,3 +17,8 @@ code {
   float: left;
   width: 33.33%;
 }
+
+.bidlistitem {
+  display: flex;
+  align-items: flex-end;
+}
