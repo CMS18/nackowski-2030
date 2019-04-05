@@ -17,6 +17,12 @@ const bidReducer = (state = initialState, { type, payload }) => {
         bids: state.bids.filter(b => b.BudID !== payload.id)
       };
 
+    case 'DELETE_ALLBIDSONAUCTION':
+      return {
+        ...state,
+        bids: state.bids.filter(b => b.AuktionID !== payload.id)
+      };
+
     default:
       return state;
   }

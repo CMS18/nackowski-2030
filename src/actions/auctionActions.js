@@ -64,7 +64,17 @@ export const deleteAuction = id => {
         'Content-Type': 'application/json'
       }
     }).then(res => {
-      dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
+      axios({
+        method: 'DELETE',
+        url: `http://nackowskis.azurewebsites.net/api/bud/2030/${id}`,
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
+        dispatch({ type: 'DELETE_ALLBIDSONAUCTION', payload: { id: id } });
+      });
     });
   };
 };

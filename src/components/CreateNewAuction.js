@@ -58,7 +58,7 @@ class CreateNewAuction extends Component {
                   <div className="input-field">
                     <textarea
                       id="Beskrivning"
-                      class="materialize-textarea"
+                      className="materialize-textarea"
                       onChange={this.handleChange}
                     />
                     <label htmlFor="Beskrivning">
