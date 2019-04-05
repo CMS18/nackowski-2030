@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
-import { logoutUser } from "../actions/userActions";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutUser } from '../actions/userActions';
 
 class SignedInLinks extends Component {
   render() {
@@ -17,6 +17,9 @@ class SignedInLinks extends Component {
           <NavLink onClick={this.props.logOut} to="/">
             Log Out User "{this.props.name}"
           </NavLink>
+        </li>
+        <li>
+          <NavLink to="/auction/3454">3454</NavLink>
         </li>
       </ul>
     );

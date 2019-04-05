@@ -81,6 +81,12 @@ export const deleteAuction = id => {
 
 export const editAuction = auction => {
   return (dispatch, getState) => {
+    let postObject = {
+      ...auction,
+      SlutDatum: moment(auction.SlutDatum).format(),
+      StartDatum: moment(auction.StartDatum).format()
+    };
+
     axios({
       method: 'PUT',
       url: `http://nackowskis.azurewebsites.net/api/Auktion/2030/${
@@ -90,7 +96,7 @@ export const editAuction = auction => {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(auction)
+      data: JSON.stringify(postObject)
     }).then(res => {
       dispatch({ type: 'EDIT_AUCTION', payload: { auction: auction } });
     });
