@@ -1,7 +1,7 @@
 import React from 'react';
 import AuctionListItem from './AuctionListItem';
 import '../index.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom'; - Behövs inte längre
 
 const AuctionList = ({ auctions }) => {
   return (

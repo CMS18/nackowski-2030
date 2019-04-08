@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 import AuctionSummary from './components/AuctionSummary';
 import Navigation from './components/Navigation';
 import CreateNewAuction from './components/CreateNewAuction';
-<<<<<<< HEAD
-import AuctionList from './components/AuctionList';
-=======
 import DeleteAuction from './components/DeleteAuction';
->>>>>>> da0a3673e0a100791e99185a50081b5ae70bb73e
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LogIn from './components/LogIn';
