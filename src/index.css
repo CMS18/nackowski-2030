@@ -15,5 +15,9 @@ code {
 
 .floater {
   float: left;
-  width: 33.33%;
+  width: 500px;
+}
+.header {
+  text-align: center;
+  color: black;
 }

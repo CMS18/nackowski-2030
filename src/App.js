@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import AuctionList from './components/AuctionList';
+import AuctionSummary from './components/AuctionSummary';
 import Navigation from './components/Navigation';
 import CreateNewAuction from './components/CreateNewAuction';
+import AuctionList from './components/AuctionList';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import LogIn from './components/LogIn';
@@ -23,7 +24,7 @@ class App extends Component {
           <Navigation />
           <Switch>
             {/* <Route Exact path="/" component={AuctionList} /> */}
-            <Route path="/list" component={AuctionList} />
+            <Route path="/list" component={AuctionSummary} />
             <Route path="/new" component={CreateNewAuction} />
             <Route path="/login" component={LogIn} />
             <Route
