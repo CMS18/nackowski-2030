@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addAuction } from '../actions/auctionActions';
+import { loadAuctions, editAuction } from '../actions/auctionActions';
+import moment from 'moment';
 
-class CreateNewAuction extends Component {
-  state = {
-    Titel: null,
-    SlutDatum: new Date(),
-    Utropspris: null,
-    Beskrivning: null
-  };
+class EditAuction extends Component {
+  componentDidMount() {
+    this.props.loadAuctions();
+    this.setState(this.props.auction);
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      Titel: 'loading',
+      SlutDatum: '',
+      Utropspris: '',
+      Beskrivning: '',
+      SkapadAv: '',
+      AuktionID: ''
+    };
+  }
+
+  componentDidUpdate(oldProps) {
+    const newProps = this.props;
+
+    if (oldProps.auction === undefined && newProps.auction !== undefined) {
+      let newTime = moment(newProps.auction.SlutDatum).format('YYYY-MM-DD');
+      let newState = { ...newProps.auction, SlutDatum: newTime };
+      this.setState(newState);
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -18,7 +40,8 @@ class CreateNewAuction extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addAuction(this.state);
+    this.props.editAuction(this.state);
+    this.props.history.push('/auction/' + this.props.id);
   };
 
   render() {
@@ -28,41 +51,50 @@ class CreateNewAuction extends Component {
           <div className="col s6 offset-s3 valign">
             <div className="card white darken-1">
               <div className="card-content black-text">
-                <span className="card-title">Create new auction</span>
+                <span className="card-title">Edit Auction</span>
                 <form onSubmit={this.handleSubmit}>
                   <div className="input-field">
                     <input
+                      value={this.state.Titel}
                       type="text"
                       id="Titel"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Titel">Title</label>
+                    <label className="active" htmlFor="Titel">
+                      Title
+                    </label>
                   </div>
                   <div className="input-field">
                     <input
+                      value={this.state.SlutDatum}
                       type="date"
                       className="datepicker"
                       id="SlutDatum"
-                      value={this.state.SlutDatum.toLocaleDateString()}
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="SlutDatum">End date</label>
+                    <label className="active" htmlFor="SlutDatum">
+                      End date
+                    </label>
                   </div>
                   <div className="input-field">
                     <input
+                      value={this.state.Utropspris}
                       type="text"
                       id="Utropspris"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Utropspris">Starting price</label>
+                    <label htmlFor="Utropspris" className="active">
+                      Starting price
+                    </label>
                   </div>
                   <div className="input-field">
                     <textarea
+                      value={this.state.Beskrivning}
                       id="Beskrivning"
                       className="materialize-textarea"
                       onChange={this.handleChange}
                     />
-                    <label htmlFor="Beskrivning">
+                    <label className="active" htmlFor="Beskrivning">
                       Information about the product
                     </label>
                   </div>
@@ -76,16 +108,22 @@ class CreateNewAuction extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    auction: state.auction.auctions.find(
+      a => a.AuktionID === parseInt(ownProps.id)
+    )
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    addAuction: auction => {
-      dispatch(addAuction(auction));
-    }
+    loadAuctions: id => dispatch(loadAuctions()),
+    editAuction: auction => dispatch(editAuction(auction))
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(CreateNewAuction);
+)(EditAuction);

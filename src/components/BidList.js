@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createBid, loadBids } from '../actions/bidActions';
 
 export class BidList extends Component {
+  componentDidMount() {
+    this.props.loadBids(this.props.auction.AuktionID);
+  }
+
+  state = {
+    bidAmount: 0
+  };
+
   render() {
+    let listItems = this.props.bids
+      .map(e => (
+        <li className="bidlistitem" key={e.BudID}>
+          <h5>{e.Budgivare}</h5>
+          <p>{e.Summa} kr</p>{' '}
+        </li>
+      ))
+      .reverse();
+
+    listItems.push(
+      <li className="bidlistitem" key={'utgang'}>
+        <h5>Utropspris</h5>
+        <p>{this.props.auction.Utropspris} kr</p>
+      </li>
+    );
+
     let bids = this.props.bids;
+
     if (bids) {
       return (
         <div>
-          <p>bidlist</p>
+          <ul>{listItems}</ul>
         </div>
       );
     } else {
@@ -16,11 +42,26 @@ export class BidList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  bids: [{ BudID: 600, Summa: 25100, AuktionID: 1, Budgivare: 'Hannibal' }]
+const mapStateToProps = (state, ownProps) => ({
+  bids: state.bids.bids,
+  user: state.user.name
+  // utgangspris: state.auctions.find(a => a.AuktionID === parseInt(ownProps.id))
+  //   .utgangspris
+  // bids: [
+  //   { BudID: 600, Summa: 25100, AuktionID: 1, Budgivare: 'Hannibal' },
+  //   { BudID: 601, Summa: 28900, AuktionID: 1, Budgivare: 'Sara' },
+  //   { BudID: 602, Summa: 999999, AuktionID: 1, Budgivare: 'Albin' }
+  // ]
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => {
+  return {
+    submitBid: bid => dispatch(createBid(bid)),
+    loadBids: id => dispatch(loadBids(id))
+    // loadBids: auktionID => {},
+    // submitBid: () => {}
+  };
+};
 
 export default connect(
   mapStateToProps,

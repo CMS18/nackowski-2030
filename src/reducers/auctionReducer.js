@@ -5,8 +5,9 @@ export default (state = initialState, { type, payload }) => {
     case 'LOAD_AUCTIONS':
       let { auctions } = payload;
       return { ...state, auctions };
-    case 'LOAD_SINGLEAUCTION':
-      return { ...state, auctions: [...state.auctions, payload.auction] };
+    // case 'LOAD_SINGLEAUCTION':
+    //     return { ...state, auctions: [...state.auctions, payload.auction] };
+
     case 'ADD_AUCTION':
       let { auction } = payload;
       return { ...state, auctions: [...state.auctions, auction] };

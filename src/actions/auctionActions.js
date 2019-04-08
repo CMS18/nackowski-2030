@@ -1,5 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
+import { deleteBid } from './bidActions';
 
 export const loadAuctions = () => {
   return (dispatch, getState) => {
@@ -11,18 +12,18 @@ export const loadAuctions = () => {
   };
 };
 
-export const loadSingleAuction = id => {
-  return (dispatch, getState) => {
-    axios
-      .get(`http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`)
-      .then(res => {
-        dispatch({
-          type: 'LOAD_SINGLEAUCTION',
-          payload: { auction: res.data }
-        });
-      });
-  };
-};
+// export const loadSingleAuction = id => {
+//   return (dispatch, getState) => {
+//     axios
+//       .get(`http://nackowskis.azurewebsites.net/api/Auktion/2030/${id}`)
+//       .then(res => {
+//         dispatch({
+//           type: 'LOAD_SINGLEAUCTION',
+//           payload: { auction: res.data }
+//         });
+//       });
+//   };
+// };
 
 export const addAuction = auction => {
   return (dispatch, getState) => {
@@ -45,11 +46,11 @@ export const addAuction = auction => {
       data: JSON.stringify(postObject)
     }).then(res => {
       console.log(res);
-
-      dispatch({
-        type: 'ADD_AUCTION',
-        payload: { auction: postObject }
-      });
+      dispatch(loadAuctions());
+      // dispatch({
+      //   type: 'ADD_AUCTION',
+      //   payload: { auction: postObject }
+      // });
     });
   };
 };
@@ -65,12 +66,26 @@ export const deleteAuction = id => {
       }
     }).then(res => {
       dispatch({ type: 'DELETE_AUCTION', payload: { id: id } });
+      axios
+        .get(`http://nackowskis.azurewebsites.net/api/bud/2030/${id}`)
+        .then(res => {
+          console.log(res);
+          for (let b of res.data) {
+            dispatch(deleteBid(b.BudID));
+          }
+        });
     });
   };
 };
 
 export const editAuction = auction => {
   return (dispatch, getState) => {
+    let postObject = {
+      ...auction,
+      SlutDatum: moment(auction.SlutDatum).format(),
+      StartDatum: moment(auction.StartDatum).format()
+    };
+
     axios({
       method: 'PUT',
       url: `http://nackowskis.azurewebsites.net/api/Auktion/2030/${
@@ -80,7 +95,7 @@ export const editAuction = auction => {
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(auction)
+      data: JSON.stringify(postObject)
     }).then(res => {
       dispatch({ type: 'EDIT_AUCTION', payload: { auction: auction } });
     });
