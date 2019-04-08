@@ -1,9 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "../index.css";
-// import CreateNewAuction from './CreateNewAuction';
-import axios from "axios";
-import { Stats } from "fs";
+import React, { Component } from 'react';
 
 //testcode start ---------------------------
 
