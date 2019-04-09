@@ -1,4 +1,4 @@
-const initialState = { auctions: [] };
+const initialState = { auctions: [], filter: '' };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
@@ -22,6 +22,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         auctions: state.auctions.filter(a => a.AuktionID !== payload.id)
+      };
+    case 'EDIT_FILTER':
+      return {
+        ...state,
+        filter: payload.filter
       };
     default:
       return state;

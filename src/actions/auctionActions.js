@@ -101,3 +101,7 @@ export const editAuction = auction => {
     });
   };
 };
+
+export const editFilter = inputString => {
+  return { type: 'EDIT_FILTER', payload: { filter: inputString } };
+};
