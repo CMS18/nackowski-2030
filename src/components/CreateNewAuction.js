@@ -95,12 +95,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(CreateNewAuction);
-
-/*
-                    <input
-                      type="date"
-                      className="datepicker"
-                      id="SlutDatum"
-                      onChange={this.handleChange}
-                    />
-*/
