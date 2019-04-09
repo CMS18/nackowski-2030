@@ -43,7 +43,7 @@ class DeleteAuction extends Component {
                       <h4 id="deleteAucText">{auction.Titel}</h4>
                       <label>End date</label>
                       <p id="deleteAucText">
-                        {moment(auction.StartDatum).format('MMMM Do YYYY')}
+                        {moment(auction.SlutDatum).format('MMMM Do YYYY')}
                       </p>
                     </div>
                     <div className="divider" />
