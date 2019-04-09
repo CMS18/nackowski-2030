@@ -21,6 +21,7 @@ class CreateNewAuction extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addAuction(this.state);
+    this.props.history.push('/list/');
   };
 
   handleSelect = date => {

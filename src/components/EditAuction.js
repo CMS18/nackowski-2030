@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadAuctions, editAuction } from '../actions/auctionActions';
 import moment from 'moment';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class EditAuction extends Component {
   componentDidMount() {
@@ -44,7 +46,14 @@ class EditAuction extends Component {
     this.props.history.push('/auction/' + this.props.id);
   };
 
+  handleSelect = date => {
+    this.setState({
+      SlutDatum: date
+    });
+  };
+
   render() {
+    let startDate = new Date();
     return (
       <div className="container">
         <div className="row valign-wrapper">
@@ -64,18 +73,13 @@ class EditAuction extends Component {
                       Title
                     </label>
                   </div>
-                  <div className="input-field">
-                    <input
-                      value={this.state.SlutDatum}
-                      type="date"
-                      className="datepicker"
-                      id="SlutDatum"
-                      onChange={this.handleChange}
-                    />
-                    <label className="active" htmlFor="SlutDatum">
-                      End date
-                    </label>
-                  </div>
+                  <label htmlFor="SlutDatum">End date</label>
+                  <br />
+                  <DatePicker
+                    selected={this.state.SlutDatum}
+                    onSelect={this.handleSelect}
+                    minDate={startDate}
+                  />
                   <div className="input-field">
                     <input
                       value={this.state.Utropspris}
