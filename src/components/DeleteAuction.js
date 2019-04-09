@@ -11,7 +11,7 @@ class DeleteAuction extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    if (e.target.id === 'dontDeleteCMD') {
+    if (e.target.id == 'dontDeleteCMD') {
       this.props.history.push('/list');
     } else {
       this.props.deleteAuction(this.props.auction.AuktionID);
@@ -73,7 +73,7 @@ class DeleteAuction extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  auction: state.auction.auctions.find(auc => auc.AuktionID === ownProps.id),
+  auction: state.auction.auctions.find(auc => auc.AuktionID == ownProps.id),
   user: state.user.name
 });
 
