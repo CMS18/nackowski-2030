@@ -17,7 +17,7 @@ export class LogIn extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.loginUser(this.state.name);
-    this.props.history.push('/');
+    this.props.history.goBack();
   };
 
   render() {

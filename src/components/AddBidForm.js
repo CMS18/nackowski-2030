@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBid } from '../actions/bidActions';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 export class AddBidForm extends Component {
   state = {
@@ -10,7 +11,8 @@ export class AddBidForm extends Component {
 
   handleChange = event => {
     this.setState({
-      bidAmount: event.target.value
+      bidAmount: event.target.value,
+      isTooLow: false
     });
   };
 
@@ -28,41 +30,52 @@ export class AddBidForm extends Component {
         Summa: this.state.bidAmount,
         AuktionID: this.props.auction.AuktionID
       });
+      this.setState({ isTooLow: false });
+    } else {
+      this.setState({ isTooLow: true });
     }
   };
 
   render() {
     let isLoggedIn = this.props.user !== null;
     let isCreator = this.props.user === this.props.auction.SkapadAv;
+    let isFinished = moment(this.props.auction.SlutDatum).isBefore(moment());
 
     let isDisabled = !isLoggedIn || isCreator;
     let val = isLoggedIn ? this.state.bidAmount : 'Log in to place bid';
     val = isCreator ? 'You can not bid on your own auction' : val;
 
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="input-field row">
-          <div className="col m7 s12">
-            <input
-              value={val}
-              disabled={isDisabled}
-              id="newbid"
-              type="text"
-              className="validate input-field"
-              onChange={this.handleChange}
-            />
-            {/* <label className="active" htmlFor="newbid">
+    if (!isFinished) {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          {this.state.isTooLow
+            ? 'Your bid has to be higher than the current maximum bid.'
+            : null}
+          <div className="input-field row">
+            <div className="col m7 s12">
+              <input
+                value={val}
+                disabled={isDisabled}
+                id="newbid"
+                type="text"
+                className="validate input-field"
+                onChange={this.handleChange}
+              />
+              {/* <label className="active" htmlFor="newbid">
               New Bid
             </label> */}
+            </div>
+            <div className="col m5 s12">
+              <button disabled={isDisabled} className="btn red input-field">
+                Submit bid
+              </button>
+            </div>
           </div>
-          <div className="col m5 s12">
-            <button disabled={isDisabled} className="btn red input-field">
-              Submit bid
-            </button>
-          </div>
-        </div>
-      </form>
-    );
+        </form>
+      );
+    } else {
+      return <div>Yo</div>;
+    }
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AuctionList from './AuctionList';
 import SearchBar from './SearchBar';
+import moment from 'moment';
 import '../index.css';
 
 class AuctionSummary extends Component {
@@ -9,14 +10,12 @@ class AuctionSummary extends Component {
     const { auctions, filterString } = this.props;
 
     if (auctions.length > 0) {
-      auctions.forEach(element => {
-        console.log(element.Titel);
-      });
-
       let filteredAuctions =
         filterString === ''
-          ? auctions
-          : auctions.filter(a => a.Titel.includes(filterString));
+          ? auctions.filter(a => moment(a.SlutDatum).isAfter(moment()))
+          : auctions.filter(a =>
+              a.Titel.toUpperCase().includes(filterString.toUpperCase())
+            );
       // auctions;
 
       return (

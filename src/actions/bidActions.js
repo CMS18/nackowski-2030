@@ -17,6 +17,8 @@ export const createBid = bid => {
       Budgivare: getState().user.name
     };
 
+    console.log(bidObject);
+
     axios({
       method: 'POST',
       url: `http://nackowskis.azurewebsites.net/api/bud/2030/${bid.AuktionID}`,
@@ -27,7 +29,7 @@ export const createBid = bid => {
       data: JSON.stringify(bidObject)
     }).then(res => {
       // dispatch({ type: 'CREATE_BID', payload: { bid: bidObject } });
-      dispatch(loadBids());
+      dispatch(loadBids(bid.AuktionID));
     });
   };
 };

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBid, loadBids } from '../actions/bidActions';
+import moment from 'moment';
 
 export class BidList extends Component {
   componentDidMount() {
@@ -12,7 +13,20 @@ export class BidList extends Component {
   };
 
   render() {
-    let listItems = this.props.bids
+    let isFinished = moment(this.props.auction.SlutDatum).isBefore(moment());
+
+    console.log(this.props);
+
+    let bids = this.props.bids;
+
+    if (isFinished) {
+      let finalBid = this.props.auction.Utropspris;
+      if (bids.length > 0) {
+        finalBid = bids[bids.length - 1];
+      }
+      return <div>End price: {finalBid}</div>;
+    }
+    let listItems = bids
       .map(e => (
         <li className="bidlistitem" key={e.BudID}>
           <h5>{e.Budgivare}:</h5>
@@ -28,17 +42,11 @@ export class BidList extends Component {
       </li>
     );
 
-    let bids = this.props.bids;
-
-    if (bids) {
-      return (
-        <div>
-          <ul>{listItems}</ul>
-        </div>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <div>
+        <ul>{listItems}</ul>
+      </div>
+    );
   }
 }
 

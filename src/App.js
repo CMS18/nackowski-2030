@@ -24,7 +24,7 @@ class App extends Component {
         <div className="App">
           <Navigation />
           <Switch>
-            {/* <Route Exact path="/" component={AuctionList} /> */}
+            <Route exact path="/" component={AuctionSummary} />
             <Route path="/list" component={AuctionSummary} />
             <Route path="/new" component={CreateNewAuction} />
             <Route
