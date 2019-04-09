@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addAuction } from '../actions/auctionActions';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class CreateNewAuction extends Component {
   state = {
     Titel: null,
-    SlutDatum: new Date(),
+    SlutDatum: null,
     Utropspris: null,
     Beskrivning: null
   };
@@ -21,7 +23,14 @@ class CreateNewAuction extends Component {
     this.props.addAuction(this.state);
   };
 
+  handleSelect = date => {
+    this.setState({
+      SlutDatum: date
+    });
+  };
+
   render() {
+    let startDate = new Date();
     return (
       <div className="container">
         <div className="row valign-wrapper">
@@ -38,16 +47,13 @@ class CreateNewAuction extends Component {
                     />
                     <label htmlFor="Titel">Title</label>
                   </div>
-                  <div className="input-field">
-                    <input
-                      type="date"
-                      className="datepicker"
-                      id="SlutDatum"
-                      value={this.state.SlutDatum.toLocaleDateString()}
-                      onChange={this.handleChange}
-                    />
-                    <label htmlFor="SlutDatum">End date</label>
-                  </div>
+                  <label htmlFor="SlutDatum">End date</label>
+                  <br />
+                  <DatePicker
+                    selected={this.state.SlutDatum}
+                    onSelect={this.handleSelect}
+                    minDate={startDate}
+                  />
                   <div className="input-field">
                     <input
                       type="text"
