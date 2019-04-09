@@ -15,16 +15,16 @@ export class BidList extends Component {
     let listItems = this.props.bids
       .map(e => (
         <li className="bidlistitem" key={e.BudID}>
-          <h5>{e.Budgivare}</h5>
-          <p>{e.Summa} kr</p>{' '}
+          <h5>{e.Budgivare}:</h5>
+          <h5>{e.Summa} kr</h5>{' '}
         </li>
       ))
       .reverse();
 
     listItems.push(
       <li className="bidlistitem" key={'utgang'}>
-        <h5>Utropspris</h5>
-        <p>{this.props.auction.Utropspris} kr</p>
+        <h5>Utropspris: </h5>
+        <h5>{this.props.auction.Utropspris} kr</h5>
       </li>
     );
 

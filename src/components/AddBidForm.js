@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createBid } from '../actions/bidActions';
+import { Redirect } from 'react-router-dom';
 
 export class AddBidForm extends Component {
   state = {
@@ -17,7 +18,10 @@ export class AddBidForm extends Component {
     event.preventDefault();
     let bidAmount = this.state.bidAmount;
     let currentMaxBid = this.props.maxBid;
-    console.log(currentMaxBid);
+    console.log(
+      currentMaxBid +
+        ' is the current maxbid, you have to enter a higher amount'
+    );
 
     if (bidAmount > currentMaxBid) {
       this.props.submitBid({
