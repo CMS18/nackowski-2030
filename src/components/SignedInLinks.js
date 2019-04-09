@@ -18,9 +18,6 @@ class SignedInLinks extends Component {
             Log Out User "{this.props.name}"
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/auction/3454">3454</NavLink>
-        </li>
       </ul>
     );
   }
