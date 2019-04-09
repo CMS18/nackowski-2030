@@ -48,9 +48,11 @@ export class AddBidForm extends Component {
     if (!isFinished) {
       return (
         <form onSubmit={this.handleSubmit}>
-          {this.state.isTooLow
-            ? 'Your bid has to be higher than the current maximum bid.'
-            : null}
+          {this.state.isTooLow ? (
+            <p className="red-text">
+              Your bid has to be higher than the current maximum bid.
+            </p>
+          ) : null}
           <div className="input-field row">
             <div className="col m7 s12">
               <input
@@ -74,7 +76,7 @@ export class AddBidForm extends Component {
         </form>
       );
     } else {
-      return <div>Yo</div>;
+      return null;
     }
   }
 }

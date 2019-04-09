@@ -12,7 +12,7 @@ export class Navigation extends Component {
     return (
       <nav className="nav-wrapper red">
         <div className="container">
-          <Link to="/list" className="brand-logo left">
+          <Link to="/list" className="brand-logo left waves-effect logga">
             Nackowski
           </Link>
           {links}

@@ -102,7 +102,9 @@ class EditAuction extends Component {
                       Information about the product
                     </label>
                   </div>
-                  <button id="createNewCMD">Save auction</button>
+                  <button id="createNewCMD" className="btn red">
+                    Save auction
+                  </button>
                 </form>
               </div>
             </div>

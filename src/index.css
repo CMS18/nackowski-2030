@@ -39,3 +39,15 @@ code {
 #deleteQuestion {
   margin-bottom: 10px;
 }
+
+.padded {
+  padding: 50px 0px;
+}
+
+.padded-slight {
+  padding: 20px 20px 20px 20px;
+}
+
+.logga {
+  left: 50px !important;
+}

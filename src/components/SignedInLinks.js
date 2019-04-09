@@ -8,10 +8,14 @@ class SignedInLinks extends Component {
     return (
       <ul className="right">
         <li>
-          <NavLink to="/new">Create New Auction</NavLink>
+          <NavLink to="/new" className="waves-effect">
+            Create New Auction
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/list">List Auctions</NavLink>
+          <NavLink to="/list" className="waves-effect">
+            List Auctions
+          </NavLink>
         </li>
         <li>
           <NavLink onClick={this.props.logOut} to="/">

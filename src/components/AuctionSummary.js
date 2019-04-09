@@ -19,9 +19,11 @@ class AuctionSummary extends Component {
       // auctions;
 
       return (
-        <div>
-          <SearchBar />
-          <AuctionList auctions={filteredAuctions} />
+        <div className="container padded marged">
+          <div className="card">
+            <SearchBar />
+            <AuctionList auctions={filteredAuctions} />
+          </div>
         </div>
       );
     } else {

@@ -33,7 +33,7 @@ class CreateNewAuction extends Component {
   render() {
     let startDate = new Date();
     return (
-      <div className="container">
+      <div className="container padded">
         <div className="row valign-wrapper">
           <div className="col s6 offset-s3 valign">
             <div className="card white darken-1">
@@ -73,7 +73,9 @@ class CreateNewAuction extends Component {
                       Information about the product
                     </label>
                   </div>
-                  <button id="createNewCMD">Save auction</button>
+                  <button id="createNewCMD" className="btn red">
+                    Save auction
+                  </button>
                 </form>
               </div>
             </div>

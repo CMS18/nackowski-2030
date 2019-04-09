@@ -5,21 +5,27 @@ import '../index.css';
 
 const AuctionListItem = ({ auction }) => {
   return (
-    <div className="floater">
-      <div className="row">
-        <div className="col s3 m8">
-          <div className="card brown darken-3">
-            <div className="card-content white-text">
-              <span className="card-title">{auction.Titel}</span>
-              <p>{auction.Utropspris} kr</p>
-              <p className="grey-text">
-                End date: {moment(auction.SlutDatum).format('MMMM Do YYYY')}
-              </p>
-            </div>
-            <div className="card-action">
-              <NavLink to={'/auction/' + auction.AuktionID}>Bid</NavLink>
-            </div>
-          </div>
+    <div className="col s12 m6 l4">
+      <div className="card ">
+        <div className="card-image">
+          <img
+            src={
+              'https://picsum.photos/1000/600?image=' +
+              auction.AuktionID.toString().substring(2, 4)
+            }
+            className=" card-image"
+          />
+        </div>
+        <div className="card-content ">
+          <span className="card-title">{auction.Titel}</span>
+          <p>{auction.Utropspris} kr</p>
+          <p className="grey-text ">
+            <p>End date:</p>
+            {moment(auction.SlutDatum).format('MMMM Do YYYY')}
+          </p>
+        </div>
+        <div className="card-action">
+          <NavLink to={'/auction/' + auction.AuktionID}>Bid</NavLink>
         </div>
       </div>
     </div>

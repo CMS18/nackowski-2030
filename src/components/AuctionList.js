@@ -1,11 +1,10 @@
 import React from 'react';
 import AuctionListItem from './AuctionListItem';
 import '../index.css';
-// import { Link } from 'react-router-dom'; - Behövs inte längre
 
 const AuctionList = ({ auctions }) => {
   return (
-    <div>
+    <div className="row">
       {auctions &&
         auctions.map(auction => {
           return <AuctionListItem auction={auction} key={auction.AuktionID} />;

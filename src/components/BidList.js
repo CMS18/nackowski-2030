@@ -22,10 +22,13 @@ export class BidList extends Component {
     if (isFinished) {
       let finalBid = this.props.auction.Utropspris;
       if (bids.length > 0) {
-        finalBid = bids[bids.length - 1];
+        finalBid = bids[bids.length - 1].Summa;
       }
-      return <div>End price: {finalBid}</div>;
+      return (
+        <div>The Auction has ended. The final price was {finalBid} kr</div>
+      );
     }
+
     let listItems = bids
       .map(e => (
         <li className="bidlistitem" key={e.BudID}>

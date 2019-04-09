@@ -34,7 +34,9 @@ export class SearchBar extends Component {
             </label> */}
           </div>
           <div className="col m5 s12">
-            <button className="btn red input-field">Submit search</button>
+            <button className="btn red input-field waves-effect">
+              Submit search
+            </button>
           </div>
         </div>
       </form>

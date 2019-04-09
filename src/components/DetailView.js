@@ -21,10 +21,19 @@ export class DetailView extends Component {
         ) : null;
 
       return (
-        <div className="container">
-          <div className="row">
-            <div className="col s12 card">
-              <h5>{auction.Titel}</h5>
+        <div className="container padded ">
+          <div className="padded-slight card">
+            <div className="card-image">
+              <img
+                src={
+                  'https://picsum.photos/1000/600?image=' +
+                  auction.AuktionID.toString().substring(0, 2)
+                }
+                className="responsive-img"
+              />
+            </div>
+            <div className="card-content">
+              <h4 className="">{auction.Titel}</h4>
               <p>{auction.Beskrivning}</p>
               <p>Seller: {auction.SkapadAv}</p>
               <p>
@@ -35,7 +44,9 @@ export class DetailView extends Component {
               </p>
               {adminpanel}
             </div>
-            <div className="col s12 card">
+          </div>
+          <div className="card padded-slight">
+            <div className="card-content">
               <h4>Bids</h4>
               <AddBidForm auction={auction} />
               <BidList auction={auction} />

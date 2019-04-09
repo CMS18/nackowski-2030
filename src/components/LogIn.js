@@ -22,28 +22,34 @@ export class LogIn extends Component {
 
   render() {
     return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="input-field col s6">
-              <input
-                id="first_name"
-                type="text"
-                className="validate"
-                onChange={this.handleChange}
-              />
-              <label htmlFor="first_name">Name</label>
+      <div className="container padded">
+        <div className="row">
+          <div className="card col s6 offset-s3">
+            <div className="padded-slight">
+              <span className="card-title">Log in</span>
+
+              <form onSubmit={this.handleSubmit}>
+                <div className="input-field">
+                  <input
+                    id="first_name"
+                    type="text"
+                    onChange={this.handleChange}
+                  />
+                  <label htmlFor="first_name">Name</label>
+                </div>
+                <div>
+                  <input
+                    id="submit"
+                    type="submit"
+                    className="btn red col s6"
+                    value="Log In"
+                  />
+                  <br />
+                </div>
+              </form>
             </div>
           </div>
-          <div>
-            <input
-              id="submit"
-              type="submit"
-              className="btn red"
-              value="Log In"
-            />
-          </div>
-        </form>
+        </div>
       </div>
     );
   }
