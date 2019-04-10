@@ -29,6 +29,7 @@ export class DetailView extends Component {
                   'https://picsum.photos/1000/600?image=' +
                   auction.AuktionID.toString().substring(2, 4)
                 }
+                alt="bild"
               />
             </div>
             <div className="card-content">

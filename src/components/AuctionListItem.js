@@ -13,13 +13,14 @@ const AuctionListItem = ({ auction }) => {
               'https://picsum.photos/1000/600?image=' +
               auction.AuktionID.toString().substring(2, 4)
             }
+            alt="bild"
           />
         </div>
         <div className="card-content ">
           <span className="card-title">{auction.Titel}</span>
           <p>{auction.Utropspris} kr</p>
-          <p className="grey-text ">
-            <p>End date:</p>
+          <p className="grey-text">End date:</p>
+          <p className="grey-text">
             {moment(auction.SlutDatum).format('MMMM Do YYYY')}
           </p>
         </div>
