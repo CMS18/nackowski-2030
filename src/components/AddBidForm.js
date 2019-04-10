@@ -83,7 +83,7 @@ export class AddBidForm extends Component {
 const mapStateToProps = (state, ownProps) => ({
   user: state.user.name,
   maxBid:
-    state.bids.bids.lengt > 0
+    state.bids.bids.length > 0
       ? Math.max(...state.bids.bids.map(b => b.Summa))
       : ownProps.auction.Utropspris
 });
