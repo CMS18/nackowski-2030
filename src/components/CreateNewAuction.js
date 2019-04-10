@@ -22,11 +22,12 @@ class CreateNewAuction extends Component {
     e.preventDefault();
     this.props.addAuction(this.state);
     this.props.history.push('/list/');
+    console.log(this.state);
   };
 
   handleSelect = date => {
     this.setState({
-      SlutDatum: date
+      SlutDatum: date.setHours(date.getHours() + 2)
     });
   };
 
