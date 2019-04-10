@@ -24,7 +24,7 @@ export class LogIn extends Component {
     return (
       <div className="container padded">
         <div className="row">
-          <div className="card col s6 offset-s3">
+          <div className="card col s12 m6 offset-m3">
             <div className="padded-slight">
               <span className="card-title">Log in</span>
 
