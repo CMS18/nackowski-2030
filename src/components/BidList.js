@@ -15,8 +15,6 @@ export class BidList extends Component {
   render() {
     let isFinished = moment(this.props.auction.SlutDatum).isBefore(moment());
 
-    console.log(this.props);
-
     let bids = this.props.bids;
 
     if (isFinished) {

@@ -22,19 +22,19 @@ export class DetailView extends Component {
 
       return (
         <div className="container padded ">
-          <div className="padded-slight card">
+          <div className="card">
             <div className="card-image">
               <img
                 src={
                   'https://picsum.photos/1000/600?image=' +
-                  auction.AuktionID.toString().substring(0, 2)
+                  auction.AuktionID.toString().substring(2, 4)
                 }
-                className="responsive-img"
               />
             </div>
             <div className="card-content">
               <h4 className="">{auction.Titel}</h4>
               <p>{auction.Beskrivning}</p>
+              <br />
               <p>Seller: {auction.SkapadAv}</p>
               <p>
                 Start Date: {moment(auction.StartDatum).format('MMMM Do YYYY')}
@@ -45,7 +45,7 @@ export class DetailView extends Component {
               {adminpanel}
             </div>
           </div>
-          <div className="card padded-slight">
+          <div className="card ">
             <div className="card-content">
               <h4>Bids</h4>
               <AddBidForm auction={auction} />
@@ -65,7 +65,6 @@ const mapStateToProps = (state, ownProps) => ({
     auc => auc.AuktionID === parseInt(ownProps.id)
   ),
   user: state.user.name
-  // user: 'Albin'
 });
 
 const mapDispatchToProps = dispatch => {

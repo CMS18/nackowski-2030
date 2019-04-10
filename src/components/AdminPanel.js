@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 export class AdminPanel extends Component {
   render() {
     let del = null;
-    if (this.props.bids) {
+    console.log(this.props);
+    if (this.props.bids !== undefined) {
+      console.log(this.props.bids.length);
+
       del =
         this.props.bids.length !== 0 ? null : (
           <Link className="btn red" to={`/delete/${this.props.auktionID}`}>
@@ -25,11 +28,13 @@ export class AdminPanel extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  bids: state.bids.bids
-});
+const mapStateToProps = state => {
+  return {
+    bids: state.bids.bids
+  };
+};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = dispatch => {};
 
 export default connect(
   mapStateToProps,

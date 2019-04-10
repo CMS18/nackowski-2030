@@ -13,7 +13,6 @@ const AuctionListItem = ({ auction }) => {
               'https://picsum.photos/1000/600?image=' +
               auction.AuktionID.toString().substring(2, 4)
             }
-            className=" card-image"
           />
         </div>
         <div className="card-content ">
