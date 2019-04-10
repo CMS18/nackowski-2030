@@ -28,9 +28,9 @@ class DeleteAuction extends Component {
         return <Redirect to="/login" />;
       } else {
         return (
-          <div className="container">
-            <div className="row valign-wrapper">
-              <div className="col s6 offset-s3 valign">
+          <div className="container padded">
+            <div className="row ">
+              <div className="col s6 offset-s3 ">
                 <div className="card white darken-1">
                   <div className="card-content black-text">
                     <span className="card-title">Delete auction</span>
