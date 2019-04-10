@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { loadAuctions } from '../actions/auctionActions';
 import BidList from './BidList';
 import moment from 'moment';
-import { AdminPanel } from './AdminPanel';
+import AdminPanel from './AdminPanel';
 import AddBidForm from './AddBidForm';
 
 export class DetailView extends Component {

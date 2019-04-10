@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export class AdminPanel extends Component {
+class AdminPanel extends Component {
   render() {
-    let del = null;
+    let deletebutton = null;
     console.log(this.props);
     if (this.props.bids !== undefined) {
       console.log(this.props.bids.length);
 
-      del =
+      deletebutton =
         this.props.bids.length !== 0 ? null : (
           <Link className="btn red" to={`/delete/${this.props.auktionID}`}>
             Delete Auction
@@ -22,7 +22,7 @@ export class AdminPanel extends Component {
         <Link className="btn red" to={`/edit/${this.props.auktionID}`}>
           Edit Auction
         </Link>
-        {del}
+        {deletebutton}
       </div>
     );
   }
