@@ -55,9 +55,9 @@ class EditAuction extends Component {
   render() {
     let startDate = new Date();
     return (
-      <div className="container">
+      <div className="container padded">
         <div className="row valign-wrapper">
-          <div className="col s6 offset-s3 valign">
+          <div className="col s12 m8 offset-m2 valign">
             <div className="card white darken-1">
               <div className="card-content black-text">
                 <span className="card-title">Edit Auction</span>
